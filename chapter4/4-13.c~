@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#define lim 50
+int getline1(void);
+void reverse(char s[lim],int k);
+int i=0;
+int c;
+char line[lim];
+main()
+{   
+     extern char line[lim];
+     char s[lim];
+     int k;
+     printf("enter a string\n");
+     getline1();
+     printf("line entered=%s\n",s);
+     k=strlen(s)-1;
+     reverse(s,k);
+     printf("reversed form =%s\n",line);
+}
+int getline1(void)
+{
+    extern int c,i;
+    char s[lim];
+    for (i=0;i<lim-1 && (c=getchar())!=EOF && c!='\n';++i)
+        s[i]=c;
+        s[i]='\0';
+}
+void reverse(char s[],int k)
+{
+     extern char line[lim];
+     extern int i,c;
+     if (k>0){
+        line[i++]=s[k--];
+        reverse(s,k);
+     }
+     
+     return ;
+}
+ 
