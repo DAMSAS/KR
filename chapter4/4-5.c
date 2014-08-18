@@ -34,6 +34,10 @@ main ()
            case '+':
                 push(pop()+pop());
                 break;
+           case '-':
+                op2=pop();
+                push(pop()-op2);
+                break;
            case '*':
                 push(pop()*pop());
                 break;
@@ -102,17 +106,21 @@ int getop(char s[])
     while((s[0]=c=getch())==' ' || c=='\t')
          ;
     s[1]='\0';
-    i=0;
+    i=0;  
+    if (islower(c)){
+	while (islower(s[++i] = c = getch()))
+	      ;
+        s[i] = '\0';
+        if (c != EOF)
+            ungetch(c);
+        if (strlen(s) > 1)
+            return NAME;
+        else 
+            return c;
+    }
     if (!isdigit(c) && c!='.' && c!='-')
        return c;
-    if (c=='-')
-       if (isdigit(c=getch()) || c=='.')
-          s[++i]=c;
-    else {
-         if (c!=EOF)
-            ungetch(c);
-          return '-';
-    }
+    
     if (isdigit(c))
        while (isdigit(s[++i] = c = getch()))
               ;

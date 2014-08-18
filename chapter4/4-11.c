@@ -1,4 +1,5 @@
-/*Add access to library functions like sin , exp , and pow . See <math.h> in*/
+/*Modify getop so that it doesn't need to use ungetch . Hint: use an internal
+static variable.*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
@@ -30,6 +31,10 @@ main ()
                 break;
            case '+':
                 push(pop()+pop());
+                break;
+           case '-':
+                op2=pop();
+                push(pop()-op2);
                 break;
            case '*':
                 push(pop()*pop());
@@ -77,9 +82,11 @@ double pop(void)
 int getop(char s[])
 {
     int i,c;
+    static int bufp=0;
     while((s[0]=c=getch())==' ' || c=='\t')
-         ;
+          ;     
     s[1]='\0';
+    
     i=0;
     if (!isdigit(c) && c!='.' && c!='-')
        return c;
@@ -98,8 +105,12 @@ int getop(char s[])
 	   while (isdigit(s[++i] = c = getchar()))
                  ;         
     s[i]='\0';
-    if (c!=EOF)
-       ungetch(c);
+    if (c!=EOF){
+       if (bufp >= BUFSIZE)
+       printf("ungetch: too many characters\n");
+    else 
+	buf[bufp++] = c;
+    }   
     return NUMBER;
 }
 int getch(void)

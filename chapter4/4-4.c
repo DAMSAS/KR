@@ -6,6 +6,7 @@ duplicate it, and to swap the top two elements. Add a command to clear the stack
 #define NUMBER '0'
 #define MAXVAL 100
 #define BUFSIZE 100
+#define MAXOP 100
 
 int sp=0;
 double val[MAXVAL];
@@ -32,6 +33,10 @@ main ()
                 break;
            case '+':
                 push(pop()+pop());
+                break;
+           case '-':
+                op2=pop();
+                push(pop()-op2);
                 break;
            case '*':
                 push(pop()*pop());

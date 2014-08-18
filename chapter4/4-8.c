@@ -31,6 +31,10 @@ main ()
            case '+':
                 push(pop()+pop());
                 break;
+           case '-':
+                op2=pop();
+                push(pop()-op2);
+                break;
            case '*':
                 push(pop()*pop());
                 break;

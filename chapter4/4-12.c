@@ -1,4 +1,6 @@
 #include<stdio.h>
+/*Adapt the ideas of printd to write a recursive version of itoa ; that is, convert
+an integer into a string by calling a recursive routine.*/
 void itoa(int n);
 int i=0;
 char s[100];
