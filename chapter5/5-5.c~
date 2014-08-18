@@ -1,0 +1,56 @@
+#include<stdio.h>
+void strncpy(char *,char *,int n);
+int strncmp(char *,char *,int n);
+void strncat(char *,char *,int n);
+main()
+{
+     int i=0,c,n=10;
+     char s[20],t[20];
+     printf("enter string 1\n");
+     for (i=0;i<19 && (c=getchar())!=EOF && c!='\n';i++)
+         s[i]=c;
+         s[i]='\0';
+     printf("enter string 2\n");
+     for (i=0;i<19 && (c=getchar())!=EOF && c!='\n';i++)
+          t[i]=c;
+          t[i]='\0';
+     printf("select any of the given numbers:a strncpy,b strncat,c strncmp\n"); 
+     switch(c=getchar()) {
+     case 'a':
+          strncpy(s,t,n);
+          printf("string 1 after copying string 2 =%s\n",s);
+          break;
+     case 'b':
+          strncat(s,t,n);
+          printf("modified string =%s\n",s);   
+          break;
+     case 'c':
+          printf("strncmp =%d\n",i=strncmp(s,t,n));
+          break;
+     }
+}
+void strncpy(char*s,char*t,int n)
+{
+      while (n-->0)
+            (*s++=*t++)!='\0';
+      if (n<=0)
+         *s='\0';
+                   
+}
+int strncmp(char *s,char *t,int n)
+{
+      for (;n-->0 && *s==*t;s++,t++)
+          if (*s=='\0')
+             return 0;
+      return *s-*t;
+}
+void strncat(char *s,char *t,int n)
+{
+     for (;*s!='\0';s++)
+         ;
+     while (n-->0)
+           *s++=*t++;
+     if (n<=0)
+        *s='\0';        
+} 
+             
